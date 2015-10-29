@@ -10,7 +10,7 @@ var shoovWebdrivercss = require('shoov-webdrivercss');
 var capsConfig = {
   'chrome': {
     'browser' : 'Chrome',
-    'browser_version' : '42.0',
+    'browser_version' : '46.0',
     'os' : 'OS X',
     'os_version' : 'Yosemite',
     'resolution' : '1024x768'
@@ -63,10 +63,17 @@ describe('Visual monitor testing', function() {
       .url(baseUrl)
       .webdrivercss(testName + '.homepage', {
         name: '1',
-        exclude: [],
-        remove: [],
-        hide: [],
-        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
+        exclude:
+          [
+            '.img_holder'
+          ],
+        hide:
+          [
+            // Top carousel.
+            '#slides'
+
+          ],
+        screenWidth: selectedCaps == 'chrome' ? [960] : undefined,
       }, resultsCallback)
       .call(done);
   });
